@@ -1,0 +1,25 @@
+namespace Interfaces.Models
+
+struct SomeSeldomUsedState
+{
+    0: int32 SomeSeldomUsedProperty;
+    1: int32 SomeOtherSeldomUsedProperty;
+    2: int32 YetAnotherSeldomUsedProperty;
+}
+
+enum SomeEnum
+{
+    SomeEnumerationValue,
+    SomeOtherEnumerationValue
+}
+
+struct SomeState
+{
+    0: int32 SomeStringProperty;
+    1: string SomeIntegerProperty;
+    2: vector<int32> SomeListProperty;
+    3: set<int32> SomeSetProperty;
+    4: map<int32, string> SomeDictionaryProperty;
+    5: bonded<SomeSeldomUsedState> SomeDeferredDeserializationProperty;
+    6: SomeEnum SomeEnumProperty = SomeEnumerationValue;
+}
