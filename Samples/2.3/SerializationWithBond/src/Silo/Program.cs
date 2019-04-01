@@ -1,12 +1,42 @@
-﻿using System;
+using System;
+using System.Threading.Tasks;
+using Grains;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Orleans;
+using Orleans.Hosting;
 
 namespace Silo
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.Title = nameof(Silo);
+
+            return new HostBuilder()
+                .UseOrleans(builder =>
+                {
+                    builder
+                        .UseLocalhostClustering()
+                        .ConfigureApplicationParts(manager =>
+                        {
+                            manager.AddApplicationPart(typeof(SomeGrain).Assembly).WithReferences();
+                        });
+                })
+                .ConfigureLogging(builder =>
+                {
+                    builder.AddConsole();
+                })
+                .ConfigureServices(services =>
+                {
+                    services.Configure<ConsoleLifetimeOptions>(options =>
+                    {
+                        options.SuppressStatusMessages = true;
+                    });
+                })
+                .RunConsoleAsync();
         }
     }
 }
