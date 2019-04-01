@@ -5,7 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Orleans;
+using Orleans.Configuration;
 using Orleans.Hosting;
+using Orleans.Serialization;
 
 namespace Silo
 {
@@ -23,6 +25,10 @@ namespace Silo
                         .ConfigureApplicationParts(manager =>
                         {
                             manager.AddApplicationPart(typeof(SomeGrain).Assembly).WithReferences();
+                        })
+                        .Configure<SerializationProviderOptions>(options =>
+                        {
+                            options.SerializationProviders.Add(typeof(BondSerializer));
                         });
                 })
                 .ConfigureLogging(builder =>
