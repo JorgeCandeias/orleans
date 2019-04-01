@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silo", "src\Silo\Silo.csproj", "{0C640E4F-F3B4-478B-A15E-06FABF02BC6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grains", "src\Grains\Grains.csproj", "{DB0332D7-9AC2-4F76-A6B0-11EEE6660043}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0C640E4F-F3B4-478B-A15E-06FABF02BC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C640E4F-F3B4-478B-A15E-06FABF02BC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C640E4F-F3B4-478B-A15E-06FABF02BC6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB0332D7-9AC2-4F76-A6B0-11EEE6660043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB0332D7-9AC2-4F76-A6B0-11EEE6660043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB0332D7-9AC2-4F76-A6B0-11EEE6660043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB0332D7-9AC2-4F76-A6B0-11EEE6660043}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,4 +10,8 @@
     <NoWarn>1701;1702</NoWarn>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Grains\Grains.csproj" />
+  </ItemGroup>
+
 </Project>
