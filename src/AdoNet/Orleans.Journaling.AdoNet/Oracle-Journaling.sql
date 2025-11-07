@@ -99,7 +99,7 @@ BEGIN
     IF constraint_count = 0 THEN
         EXECUTE IMMEDIATE '
         ALTER TABLE OrleansJournalingStorage
-        ADD CONSTRAINT UQ_OJS_GrainId_Version UNIQUE (GrainId, Version)';
+        ADD CONSTRAINT UQ_OJS_GRAINID_VERSION UNIQUE (GrainId, Version)';
     END IF;
 END;
 /

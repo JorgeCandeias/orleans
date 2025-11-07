@@ -148,11 +148,15 @@ internal sealed partial class AdoNetLogStorage : IStateMachineStorage
     {
         var data = value.ToArray();
 
-        // Note: Ideally this should be in a transaction, but the current IRelationalStorage interface
-        // doesn't expose transaction support. For most databases, these operations will execute quickly
-        // and the risk of partial failure is low. However, in production scenarios with high load,
-        // consider implementing database-specific transaction handling or using a stored procedure
-        // to ensure atomicity.
+        // Note: This operation is not fully atomic due to IRelationalStorage interface limitations.
+        // It performs two separate operations: DELETE followed by INSERT.
+        // Risk: If DELETE succeeds but INSERT fails (e.g., due to network issues, database shutdown),
+        // the grain's state will be lost until recovered from backup or recreation.
+        // Mitigation strategies:
+        // - For production use, consider implementing database-specific stored procedures with BEGIN TRANSACTION
+        // - Most databases will execute these operations quickly, minimizing the failure window
+        // - Orleans grain activation lifecycle typically ensures single-threaded access per grain
+        // - Consider implementing compensating actions or backup strategies at the application level
 
         // First, delete all existing segments for this grain
         var deleteQuery = $@"DELETE FROM {_tableName} WHERE GrainId = @GrainId";
