@@ -148,7 +148,12 @@ internal sealed partial class AdoNetLogStorage : IStateMachineStorage
     {
         var data = value.ToArray();
 
-        // Start a transaction to ensure atomicity
+        // Note: Ideally this should be in a transaction, but the current IRelationalStorage interface
+        // doesn't expose transaction support. For most databases, these operations will execute quickly
+        // and the risk of partial failure is low. However, in production scenarios with high load,
+        // consider implementing database-specific transaction handling or using a stored procedure
+        // to ensure atomicity.
+
         // First, delete all existing segments for this grain
         var deleteQuery = $@"DELETE FROM {_tableName} WHERE GrainId = @GrainId";
 

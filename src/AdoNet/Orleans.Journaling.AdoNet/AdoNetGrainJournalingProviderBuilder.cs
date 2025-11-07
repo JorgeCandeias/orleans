@@ -15,7 +15,7 @@ internal sealed class AdoNetGrainJournalingProviderBuilder : IProviderBuilder<IS
     {
         builder.AddAdoNetStateMachineStorage();
         var optionsBuilder = builder.Services.AddOptions<AdoNetStateMachineStorageOptions>();
-        optionsBuilder.Configure(options =>
+        optionsBuilder.Configure<IConfiguration>((options, rootConfiguration) =>
         {
             var connectionString = configurationSection["ConnectionString"];
             if (!string.IsNullOrEmpty(connectionString))
@@ -27,7 +27,6 @@ internal sealed class AdoNetGrainJournalingProviderBuilder : IProviderBuilder<IS
                 var connectionName = configurationSection["ConnectionName"];
                 if (!string.IsNullOrEmpty(connectionName))
                 {
-                    var rootConfiguration = builder.Services.BuildServiceProvider().GetRequiredService<IConfiguration>();
                     connectionString = rootConfiguration.GetConnectionString(connectionName);
                     if (!string.IsNullOrEmpty(connectionString))
                     {
