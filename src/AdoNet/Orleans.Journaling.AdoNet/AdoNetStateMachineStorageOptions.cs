@@ -1,42 +1,5 @@
+using Orleans.Journaling.AdoNet.Storage;
 using Orleans.Runtime;
-
-#if JOURNALING_ADONET
-namespace Orleans.Journaling.AdoNet.Storage
-#else
-// No default namespace intentionally to cause compile errors if something is not defined
-#endif
-{
-    /// <summary>
-    /// ADO.NET invariant name constants
-    /// </summary>
-    internal static class AdoNetInvariants
-    {
-        /// <summary>
-        /// Microsoft SQL Server invariant name
-        /// </summary>
-        public const string InvariantNameSqlServer = "System.Data.SqlClient";
-
-        /// <summary>
-        /// Oracle Database invariant name
-        /// </summary>
-        public const string InvariantNameOracleDatabase = "Oracle.DataAccess.Client";
-
-        /// <summary>
-        /// MySql invariant name
-        /// </summary>
-        public const string InvariantNameMySql = "MySql.Data.MySqlClient";
-
-        /// <summary>
-        /// PostgreSQL invariant name
-        /// </summary>
-        public const string InvariantNamePostgreSql = "Npgsql";
-
-        /// <summary>
-        /// SQLite invariant name
-        /// </summary>
-        public const string InvariantNameSqlLite = "Microsoft.Data.Sqlite";
-    }
-}
 
 namespace Orleans.Journaling;
 
@@ -54,7 +17,7 @@ public sealed class AdoNetStateMachineStorageOptions
     /// <summary>
     /// The default ADO.NET invariant used for storage if none is given. 
     /// </summary>
-    public const string DEFAULT_ADONET_INVARIANT = "System.Data.SqlClient";
+    public const string DEFAULT_ADONET_INVARIANT = AdoNetInvariants.InvariantNameSqlServer;
 
     /// <summary>
     /// The invariant name for storage.
