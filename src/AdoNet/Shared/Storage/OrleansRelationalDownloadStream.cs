@@ -14,6 +14,8 @@ namespace Orleans.Persistence.AdoNet.Storage
 namespace Orleans.Reminders.AdoNet.Storage
 #elif STREAMING_ADONET
 namespace Orleans.Streaming.AdoNet.Storage
+#elif JOURNALING_ADONET
+namespace Orleans.Journaling.AdoNet.Storage
 #elif GRAINDIRECTORY_ADONET
 namespace Orleans.GrainDirectory.AdoNet.Storage
 #elif TESTER_SQLUTILS

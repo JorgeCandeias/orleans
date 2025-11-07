@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageId>Microsoft.Orleans.Journaling.AdoNet</PackageId>
+    <Title>Microsoft Orleans ADO.NET Journaling Provider</Title>
+    <Description>Microsoft Orleans journaling provider backed by ADO.NET</Description>
+    <PackageTags>$(PackageTags) ADO.NET SQL MySQL PostgreSQL Oracle</PackageTags>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <VersionSuffix Condition="$(VersionSuffix) != ''">$(VersionSuffix).alpha.1</VersionSuffix>
+    <VersionSuffix Condition="$(VersionSuffix) == ''">alpha.1</VersionSuffix>
+    <OrleansBuildTimeCodeGen>true</OrleansBuildTimeCodeGen>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <DefineConstants>$(DefineConstants);JOURNALING_ADONET</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Shared\Storage\*.cs" LinkBase="Storage" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(SourceRoot)src\Orleans.Journaling\Orleans.Journaling.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Orleans.Journaling.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>
