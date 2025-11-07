@@ -13,7 +13,7 @@ internal sealed class AdoNetStateMachineStorageProvider(
     private readonly ILoggerFactory _loggerFactory = loggerFactory;
     private IRelationalStorage? _storage;
 
-    private async Task Initialize(CancellationToken cancellationToken)
+    private Task Initialize(CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(_options.ConnectionString))
         {
@@ -27,7 +27,7 @@ internal sealed class AdoNetStateMachineStorageProvider(
 
         _storage = RelationalStorage.CreateInstance(_options.Invariant, _options.ConnectionString);
         
-        await Task.CompletedTask;
+        return Task.CompletedTask;
     }
 
     public IStateMachineStorage Create(IGrainContext grainContext)
